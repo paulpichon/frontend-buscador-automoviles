@@ -24,5 +24,6 @@ const limpiarHTML = ( selector ) => {
 }
 //exports
 export {
-    mostrarResultados
+    mostrarResultados,
+    limpiarHTML
 }

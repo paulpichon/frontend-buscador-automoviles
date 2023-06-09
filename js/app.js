@@ -1,5 +1,7 @@
 //autos desde la BD
 import { automoviles } from "./db.js";
+//importar la funcion para mostrar las alertas
+import { mostrarAlerta } from "./mostrar-alerta.js";
 //fucnion para mostrar los autos en el HTML
 import { mostrarResultados } from "./mostrar-autos.js";
 //mostrar los años en el input
@@ -90,8 +92,14 @@ const filtrarAutos = async() => {
     //recorrer con el arrego autos el arreglo original
     const autos = await automoviles();
     const resultados = autos.filter( filtrarMarca ).filter( filtrarYear ).filter( filtrarMinimo ).filter( filtrarMaximo ).filter( filtrarPuertas ).filter( filtrarTransmision ).filter( filtrarColor );
-    //llamar la funcion para mostrar los resultados una vez filtrados
-    mostrarResultados( resultados );
+    //verificar si la constante trae informacion
+    if ( resultados.length > 0 ) {
+        //llamar la funcion para mostrar los resultados una vez filtrados
+        mostrarResultados( resultados );
+    }else {
+        //funcion para mostrar alerta
+        mostrarAlerta('No hay resultados');
+    }
 }
 //filtrar por marca
 const filtrarMarca = ( auto ) => {
@@ -151,16 +159,16 @@ const filtrarPuertas = auto => {
 //funcion para filtrar por transmision
 const filtrarTransmision = ( auto ) => {
     //desestructurar
-    const { tranmision } = arregloBusqueda;
+    const { transmision } = arregloBusqueda;
     //si viene puertas
-    if ( tranmision ) {
-        return auto.tranmision === tranmision;
+    if ( transmision ) {
+        return auto.transmision === transmision;
     }else {
         return auto;
     }
 }
 //funcion para filtrar por color
-const filtrarColor = () => {
+const filtrarColor = ( auto ) => {
     //desestructurar
     const { color } = arregloBusqueda;
     //si hay color
