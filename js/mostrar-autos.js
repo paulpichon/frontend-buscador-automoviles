@@ -1,6 +1,8 @@
 //funcion para mostrar los resultados
 const mostrarResultados = ( autos ) => {
     const resultados = document.querySelector('#resultado');
+    //limpiar el html
+    limpiarHTML( resultados );
     //recorrer el arreglo
     autos.forEach( auto => {
         //desestructurar
@@ -13,6 +15,12 @@ const mostrarResultados = ( autos ) => {
         resultados.appendChild( p );
 
     });
+}
+//limpiar el html
+const limpiarHTML = ( selector ) => {
+    while( selector.firstChild ) {
+        selector.removeChild( selector.firstChild );
+    }
 }
 //exports
 export {
