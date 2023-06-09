@@ -5,7 +5,7 @@ const automoviles = async() => {
 		redirect: 'follow'
 	  };
 	  
-	const response = await fetch("http://localhost:5000/api/automoviles", requestOptions);
+	const response = await fetch("https://apiautomovil-production-0c64.up.railway.app/api/automoviles", requestOptions);
 	const resultado = await response.json();
 
 	if ( response.status === 200 ) {
